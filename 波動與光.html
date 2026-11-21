@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>國二理化｜波動與光 </title>
+  <style>
+        :root {
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --primary: #2563eb;
+      --primary-soft: #eff6ff;
+      --teal: #0f766e;
+      --teal-soft: #f0fdfa;
+      --success: #15803d;
+      --success-bg: #dcfce7;
+      --success-border: #86efac;
+      --error: #b91c1c;
+      --error-bg: #fee2e2;
+      --error-border: #fca5a5;
+      --border: #e2e8f0;
+      --shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.68;
+      padding: 24px 16px 72px;
+    }
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    header {
+      background: linear-gradient(135deg, #1d4ed8, #0284c7 60%, #0d9488);
+      color: #fff;
+      padding: 24px 26px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    header h1 {
+      margin: 0 0 6px;
+      font-size: 1.52rem;
+    }
+
+    header p {
+      margin: 0;
+      opacity: 0.94;
+      font-size: 0.96rem;
+    }
+
+    .mode-switch {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .mode-btn {
+      flex: 1 1 200px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: all 0.15s ease;
+    }
+
+    .mode-btn:hover {
+      border-color: #93c5fd;
+      background: var(--primary-soft);
+    }
+
+    .mode-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .mode-btn.teal.active {
+      background: var(--teal);
+      border-color: var(--teal);
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--card);
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+
+    .filter-group, .action-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      padding: 7px 13px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.15s ease;
+    }
+
+    button:hover {
+      border-color: #cbd5e1;
+      background: #f8fafc;
+    }
+
+    button.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    button.active.teal-filter {
+      background: var(--teal);
+      border-color: var(--teal);
+    }
+
+    .stats {
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .q-num {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1rem;
+    }
+
+    .k-num {
+      font-weight: 700;
+      color: var(--teal);
+      font-size: 1rem;
+    }
+
+    .badge {
+      font-size: 0.78rem;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      color: #475569;
+      font-weight: 600;
+    }
+
+    .badge.teal {
+      background: var(--teal-soft);
+      color: var(--teal);
+    }
+
+    .question {
+      font-size: 1.06rem;
+      font-weight: 700;
+      margin: 0 0 12px;
+    }
+
+    .summary-hint {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .option-btn {
+      width: 100%;
+      text-align: left;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #fff;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .option-btn:hover {
+      background: var(--primary-soft);
+      border-color: #93c5fd;
+    }
+
+    .option-btn.correct {
+      background: var(--success-bg);
+      border-color: var(--success-border);
+      color: var(--success);
+      font-weight: 600;
+    }
+
+    .option-btn.wrong {
+      background: var(--error-bg);
+      border-color: var(--error-border);
+      color: var(--error);
+      font-weight: 600;
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .reveal-btn {
+      background: var(--primary-soft);
+      color: var(--primary);
+      border-color: #bfdbfe;
+      font-weight: 600;
+    }
+
+    .reveal-btn:hover {
+      background: #dbeafe;
+    }
+
+    .reveal-btn.teal {
+      background: var(--teal-soft);
+      color: var(--teal);
+      border-color: #99f6e4;
+    }
+
+    .reveal-btn.teal:hover {
+      background: #ccfbf1;
+    }
+
+    .feedback {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .feedback.ok { color: var(--success); }
+    .feedback.no { color: var(--error); }
+
+    .drawer {
+      display: none;
+      margin-top: 14px;
+      padding: 16px 18px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border-left: 4px solid var(--primary);
+      font-size: 0.94rem;
+    }
+
+    .drawer.teal {
+      border-left-color: var(--teal);
+      background: #f9fefd;
+    }
+
+    .drawer.open {
+      display: block;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .drawer .ans-line {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .drawer ul {
+      margin: 8px 0 14px;
+      padding-left: 20px;
+    }
+
+    .drawer li {
+      margin-bottom: 6px;
+    }
+
+    .callout {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      color: #78350f;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+    }
+
+    .chart-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      margin-top: 8px;
+    }
+
+    .chart-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .chart-box svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .hidden {
+      display: none !important;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>國二理化｜波動與光</h1>
+    </header>
+
+    <div class="mode-switch">
+      <button class="mode-btn teal active" id="tabKnowledge">知識點</button>
+      <button class="mode-btn" id="tabQuiz">練習</button>
+    </div>
+
+    <!-- 知識點專區 -->
+    <section id="knowledgeSection">
+      <div class="toolbar">
+        <div class="filter-group" id="kFilters">
+          <button class="active teal-filter" data-kfilter="all">全部知識點（6）</button>
+          <button data-kfilter="wave-basic">波動基礎與波速</button>
+          <button data-kfilter="wave-ext">半徑、反射與透射</button>
+          <button data-kfilter="light">光學現象</button>
+        </div>
+        <div class="action-group">
+          <button id="toggleAllKnowledgeBtn">全部展開圖文</button>
+          <button id="collapseAllKnowledgeBtn">全部收合</button>
+        </div>
+      </div>
+      <div class="card-list" id="knowledgeList"></div>
+    </section>
+
+    <!-- 練習題專區 -->
+    <section id="quizSection" class="hidden">
+      <div class="toolbar">
+        <div class="filter-group" id="qFilters">
+          <button class="active" data-qfilter="all">全部（12）</button>
+          <button data-qfilter="wave">波動基礎與波速</button>
+          <button data-qfilter="light">光學現象</button>
+          <button data-qfilter="advanced">半徑、反射與透射</button>
+        </div>
+        <div class="action-group">
+          <span class="stats" id="statsText">已作答：0 / 12｜答對：0</span>
+          <button id="toggleAllQuizBtn">全部展開詳解</button>
+          <button id="resetQuizBtn">重新作答</button>
+        </div>
+      </div>
+      <div class="card-list" id="quizList"></div>
+    </section>
+  </div>
+
+  <script>
+    const knowledgeCards = [
+      {
+        id: "K1",
+        category: "wave-basic",
+        tag: "波動定義與分類",
+        title: "什麼是波動？橫波、縱波、力學波與電磁波",
+        hint: "核心一句話：波傳遞的是「能量」，介質只在原地振動，不會跟著跑。",
+        points: [
+          "<strong>介質與能量</strong>：振動在介質中傳遞的現象。傳遞的是<strong>能量</strong>，介質只在原地附近振動（水波介質是水、繩波是繩子、聲波主要是空氣）。",
+          "<strong>橫波（高低波）</strong>：介質振動方向與波前進方向<strong>垂直</strong>（例：甩繩波、水波、光波）。",
+          "<strong>縱波（疏密波）</strong>：介質振動方向與波前進方向<strong>平行</strong>，有疏部與密部（例：彈簧伸縮波、空氣中的聲波）。",
+          "<strong>力學波 vs. 電磁波</strong>：力學波<strong>需要介質</strong>（繩波、水波、聲波）；電磁波<strong>不需要介質</strong>，可在真空傳播（光波、無線電波）。"
+        ],
+        callout: "考試陷阱：外太空是真空，所以沒有聲音，但看得到星星發出的光！",
+        chartTitle: "橫波波形名詞（波峰、波谷、振幅 A、波長 λ）與縱波疏密示意",
+        svg: `
+          <svg viewBox="0 0 760 210" xmlns="http://www.w3.org/2000/svg">
+            <!-- 橫波區 -->
+            <text x="18" y="22" font-size="13" font-weight="bold" fill="#0f766e">1. 橫波（振動 ⊥ 前進方向）</text>
+            <line x1="20" y1="85" x2="365" y2="85" stroke="#94a3b8" stroke-dasharray="5,4" stroke-width="1.5"/>
+            <path d="M 30 85 Q 72 25, 115 85 T 200 85 T 285 85 T 355 70" fill="none" stroke="#2563eb" stroke-width="3"/>
+            <!-- 波峰與波谷 -->
+            <circle cx="72" cy="55" r="4" fill="#ef4444"/>
+            <text x="58" y="45" font-size="11" fill="#ef4444" font-weight="bold">波峰</text>
+            <circle cx="157" cy="115" r="4" fill="#0284c7"/>
+            <text x="143" y="133" font-size="11" fill="#0284c7" font-weight="bold">波谷</text>
+            <!-- 振幅 -->
+            <line x1="72" y1="55" x2="72" y2="85" stroke="#dc2626" stroke-width="2"/>
+            <text x="78" y="74" font-size="11" fill="#dc2626" font-weight="bold">振幅 A</text>
+            <!-- 波長 -->
+            <line x1="72" y1="36" x2="242" y2="36" stroke="#0f766e" stroke-width="2"/>
+            <line x1="72" y1="32" x2="72" y2="40" stroke="#0f766e" stroke-width="2"/>
+            <line x1="242" y1="32" x2="242" y2="40" stroke="#0f766e" stroke-width="2"/>
+            <text x="135" y="31" font-size="11" fill="#0f766e" font-weight="bold">波長 λ（峰到峰）</text>
+
+            <!-- 分隔線 -->
+            <line x1="385" y1="15" x2="385" y2="195" stroke="#e2e8f0" stroke-width="2"/>
+
+            <!-- 縱波區 -->
+            <text x="405" y="22" font-size="13" font-weight="bold" fill="#0f766e">2. 縱波（振動 ∥ 前進方向，疏密波）</text>
+            <line x1="405" y1="85" x2="740" y2="85" stroke="#cbd5e1" stroke-width="2"/>
+            <!-- 密部與疏部圓點 -->
+            <g fill="#2563eb">
+              <circle cx="420" cy="85" r="4"/><circle cx="427" cy="85" r="4"/><circle cx="434" cy="85" r="4"/><circle cx="441" cy="85" r="4"/>
+              <circle cx="460" cy="85" r="4"/><circle cx="482" cy="85" r="4"/><circle cx="504" cy="85" r="4"/>
+              <circle cx="523" cy="85" r="4"/><circle cx="530" cy="85" r="4"/><circle cx="537" cy="85" r="4"/><circle cx="544" cy="85" r="4"/>
+              <circle cx="563" cy="85" r="4"/><circle cx="585" cy="85" r="4"/><circle cx="607" cy="85" r="4"/>
+              <circle cx="626" cy="85" r="4"/><circle cx="633" cy="85" r="4"/><circle cx="640" cy="85" r="4"/><circle cx="647" cy="85" r="4"/>
+            </g>
+            <text x="415" y="114" font-size="11" fill="#1d4ed8" font-weight="bold">密部</text>
+            <text x="470" y="114" font-size="11" fill="#64748b" font-weight="bold">疏部</text>
+            <text x="518" y="114" font-size="11" fill="#1d4ed8" font-weight="bold">密部</text>
+            <text x="573" y="114" font-size="11" fill="#64748b" font-weight="bold">疏部</text>
+            <text x="621" y="114" font-size="11" fill="#1d4ed8" font-weight="bold">密部</text>
+            <!-- 前進方向箭頭 -->
+            <line x1="420" y1="155" x2="710" y2="155" stroke="#0f766e" stroke-width="2.5"/>
+            <polygon points="710,150 722,155 710,160" fill="#0f766e"/>
+            <text x="515" y="175" font-size="12" fill="#0f766e" font-weight="bold">波前進方向 →</text>
+          </svg>
+        `
+      },
+      {
+        id: "K2",
+        category: "wave-basic",
+        tag: "週期、頻率與波速",
+        title: "週期、頻率與波速公式（v = f × λ）",
+        hint: "同一種介質波速固定；頻率變大時，波長會變小。",
+        points: [
+          "<strong>週期（T）</strong>：振動一次所需的時間，單位為秒（s）。",
+          "<strong>頻率（f）</strong>：每秒振動次數，單位為赫茲（Hz）。與週期互為倒數：<strong>f = 1 / T</strong>、<strong>T = 1 / f</strong>。",
+          "<strong>波速公式</strong>：波走一個波長（λ）花一個週期（T），所以 <strong>v = λ / T = f × λ</strong>。",
+          "<strong>波速決定於介質</strong>：同一條均勻繩子或同一溫度下的空氣，波速（v）固定不變；若頻率 f 變大，波長 λ 成反比變小。"
+        ],
+        callout: "提醒：手上下甩繩的快慢決定「頻率 f」，繩子本身的材質與鬆緊決定「波速 v」，兩者不要搞混！",
+        chartTitle: "同一介質下，頻率 f 變大（週期變小）時，波長 λ 變短的對比",
+        svg: `
+          <svg viewBox="0 0 760 190" xmlns="http://www.w3.org/2000/svg">
+            <text x="20" y="24" font-size="13" font-weight="bold" fill="#1e293b">低頻率（f 較小）→ 波長 λ 較長</text>
+            <path d="M 30 58 Q 110 22, 190 58 T 350 58 T 510 58 T 670 58" fill="none" stroke="#2563eb" stroke-width="3"/>
+            <line x1="110" y1="32" x2="270" y2="32" stroke="#0f766e" stroke-width="2"/>
+            <text x="165" y="27" font-size="11" fill="#0f766e" font-weight="bold">較長波長 λ₁</text>
+
+            <text x="20" y="108" font-size="13" font-weight="bold" fill="#1e293b">高頻率（f 較大）→ 波長 λ 較短（假設波速 v 相同）</text>
+            <path d="M 30 142 Q 70 112, 110 142 T 190 142 T 270 142 T 350 142 T 430 142 T 510 142 T 590 142 T 670 142" fill="none" stroke="#0d9488" stroke-width="3"/>
+            <line x1="70" y1="118" x2="150" y2="118" stroke="#dc2626" stroke-width="2"/>
+            <text x="85" y="113" font-size="11" fill="#dc2626" font-weight="bold">較短波長 λ₂</text>
+          </svg>
+        `
+      },
+      {
+        id: "K3",
+        category: "wave-ext",
+        tag: "半徑與能量／振幅",
+        title: "擴散半徑（r）變大時，能量強度與振幅如何變化？",
+        hint: "往外擴散範圍變大，總能量被分攤開來，強度與振幅都會減弱。",
+        points: [
+          "<strong>能量強度（I）</strong>：單位面積（或單位長度）所分到的能量。半徑 r 越大，能量分散在更大的範圍，<strong>強度隨半徑增加而減弱</strong>。",
+          "<strong>圓形波與球面波</strong>：忽略摩擦或吸收損耗時，二維圓形波周長與 r 成正比（強度 ∝ 1/r）；三維球面波表面積與 r² 成正比（強度 ∝ 1/r²，半徑變 3 倍，單位面積強度變為 1/9 倍）。",
+          "<strong>振幅（A）與半徑</strong>：振幅代表振動幅度與能量大小，隨半徑 r 變大、能量分散，<strong>振幅也會隨半徑增加而變小</strong>。"
+        ],
+        callout: "口訣：半徑 r 變大 → 範圍變大、能量被攤平 → 強度減弱、振幅變小。",
+        chartTitle: "點光源／波源向外擴散：半徑 r 變大，單位面積能量分散",
+        svg: `
+          <svg viewBox="0 0 760 195" xmlns="http://www.w3.org/2000/svg">
+            <!-- 左側同心圓波前 -->
+            <circle cx="130" cy="100" r="24" fill="none" stroke="#2563eb" stroke-width="2.5"/>
+            <circle cx="130" cy="100" r="52" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-dasharray="6,3"/>
+            <circle cx="130" cy="100" r="80" fill="none" stroke="#0d9488" stroke-width="2" stroke-dasharray="4,4"/>
+            <circle cx="130" cy="100" r="5" fill="#ef4444"/>
+            <text x="95" y="24" font-size="12" font-weight="bold" fill="#1e293b">向外擴散波前</text>
+            <line x1="130" y1="100" x2="210" y2="100" stroke="#ef4444" stroke-width="2"/>
+            <text x="155" y="95" font-size="11" fill="#ef4444" font-weight="bold">半徑 r ↑</text>
+
+            <!-- 右側強度衰減曲線 -->
+            <text x="275" y="24" font-size="13" font-weight="bold" fill="#0f766e">半徑 r 增大 → 能量強度與振幅皆下降</text>
+            <line x1="300" y1="165" x2="300" y2="45" stroke="#334155" stroke-width="2"/>
+            <line x1="300" y1="165" x2="700" y2="165" stroke="#334155" stroke-width="2"/>
+            <text x="260" y="55" font-size="11" fill="#334155" font-weight="bold">強度 / 振幅</text>
+            <text x="640" y="183" font-size="11" fill="#334155" font-weight="bold">半徑 r →</text>
+
+            <path d="M 320 62 Q 410 115, 675 152" fill="none" stroke="#2563eb" stroke-width="3"/>
+            <text x="435" y="102" font-size="12" fill="#2563eb" font-weight="bold">隨半徑 r 增加而減弱</text>
+          </svg>
+        `
+      },
+      {
+        id: "K4",
+        category: "wave-ext",
+        tag: "波的反射與透射",
+        title: "波遇到交界處：反射波與透射波的變化",
+        hint: "透射波進新介質：頻率不變，波速與波長變；反射波回原介質：頻率、波速、波長不變。",
+        points: [
+          "<strong>反射波</strong>：遇到交界處彈回<strong>原本介質</strong>的波。留在原介質，所以<strong>波速（v）、頻率（f）、波長（λ）都不變</strong>，但因能量分流，<strong>振幅通常比入射波小</strong>。",
+          "<strong>透射波</strong>：穿過交界處、進入<strong>新介質</strong>的波。波源振動次數沒變，所以<strong>頻率（f）不變</strong>；但換了介質，<strong>波速（v）會改變</strong>，由 v = f × λ 可知，<strong>波長（λ）也會跟著改變</strong>（波速變快則波長變長，波速變慢則波長變短）。"
+        ],
+        callout: "關鍵記憶：跨介質看「透射波」，頻率永遠不變、波速與波長一起變大或變小；回原介質看「反射波」，頻率、波速、波長全不變，能量變小。",
+        chartTitle: "波遇到介質交界處：入射波、反射波（回原介質）與透射波（入新介質）",
+        svg: `
+          <svg viewBox="0 0 760 195" xmlns="http://www.w3.org/2000/svg">
+            <!-- 介質 A 與 介質 B -->
+            <rect x="30" y="30" width="350" height="140" rx="8" fill="#eff6ff" stroke="#bfdbfe"/>
+            <rect x="380" y="30" width="350" height="140" rx="8" fill="#f0fdfa" stroke="#99f6e4"/>
+            <line x1="380" y1="22" x2="380" y2="178" stroke="#0f172a" stroke-width="3"/>
+            <text x="45" y="50" font-size="12" font-weight="bold" fill="#1d4ed8">介質 1（原介質，如輕繩/空氣）</text>
+            <text x="395" y="50" font-size="12" font-weight="bold" fill="#0f766e">介質 2（新介質，如重繩/玻璃）</text>
+
+            <!-- 入射波 -->
+            <line x1="70" y1="88" x2="365" y2="88" stroke="#2563eb" stroke-width="2.5"/>
+            <polygon points="365,83 377,88 365,93" fill="#2563eb"/>
+            <text x="155" y="80" font-size="12" fill="#2563eb" font-weight="bold">入射波（能量 100%）</text>
+
+            <!-- 反射波 -->
+            <line x1="377" y1="132" x2="95" y2="132" stroke="#d97706" stroke-width="2.5" stroke-dasharray="6,3"/>
+            <polygon points="95,127 83,132 95,137" fill="#d97706"/>
+            <text x="115" y="152" font-size="11" fill="#b45309" font-weight="bold">反射波：v、f、λ 不變，振幅變小</text>
+
+            <!-- 透射波 -->
+            <line x1="383" y1="98" x2="670" y2="112" stroke="#0f766e" stroke-width="2.5"/>
+            <polygon points="670,107 682,113 669,117" fill="#0f766e"/>
+            <text x="405" y="132" font-size="11" fill="#0f766e" font-weight="bold">透射波：f 不變，v 與 λ 隨新介質改變</text>
+          </svg>
+        `
+      },
+      {
+        id: "K5",
+        category: "light",
+        tag: "光的直進與反射",
+        title: "光的直進、影子、反射定律與平面鏡成像",
+        hint: "反射角＝入射角（都跟「法線」夾角）；平面鏡成正立、等大、左右相反的虛像。",
+        points: [
+          "<strong>光的直進</strong>：光在均勻透明介質中沿直線前進，形成影子、日食、月食。",
+          "<strong>反射定律</strong>：入射線、反射線、法線在同一平面上；<strong>入射角＝反射角</strong>（角度是光線與<strong>法線</strong>的夾角，不是與鏡面的夾角！）。",
+          "<strong>漫反射</strong>：粗糙表面使光線向四面八方散射，讓我們能從不同角度看到不發光的物體。",
+          "<strong>平面鏡成像</strong>：<strong>正立、等大、左右相反、虛像</strong>；像與物到鏡面距離相等，連線垂直鏡面。"
+        ],
+        callout: "常錯陷阱：題目說「光線與鏡面夾角 30°」，入射角是 90° − 30° = 60°，反射角也是 60°！",
+        chartTitle: "反射定律示意圖（入射角 θi ＝ 反射角 θr，皆以法線為基準）",
+        svg: `
+          <svg viewBox="0 0 760 190" xmlns="http://www.w3.org/2000/svg">
+            <!-- 鏡面 -->
+            <rect x="80" y="140" width="600" height="8" fill="#64748b"/>
+            <text x="580" y="166" font-size="12" fill="#475569" font-weight="bold">平面鏡鏡面</text>
+            <!-- 法線 -->
+            <line x1="380" y1="25" x2="380" y2="140" stroke="#0f766e" stroke-width="2" stroke-dasharray="5,4"/>
+            <text x="388" y="38" font-size="12" fill="#0f766e" font-weight="bold">法線（⊥ 鏡面）</text>
+            <!-- 入射線 -->
+            <line x1="210" y1="40" x2="380" y2="140" stroke="#2563eb" stroke-width="2.5"/>
+            <polygon points="370,131 380,140 366,138" fill="#2563eb"/>
+            <text x="155" y="36" font-size="12" fill="#2563eb" font-weight="bold">入射線</text>
+            <!-- 反射線 -->
+            <line x1="380" y1="140" x2="550" y2="40" stroke="#ef4444" stroke-width="2.5"/>
+            <polygon points="536,44 550,40 541,51" fill="#ef4444"/>
+            <text x="556" y="36" font-size="12" fill="#ef4444" font-weight="bold">反射線</text>
+            <!-- 角度標示 -->
+            <text x="325" y="92" font-size="12" fill="#2563eb" font-weight="bold">入射角</text>
+            <text x="395" y="92" font-size="12" fill="#ef4444" font-weight="bold">反射角</text>
+          </svg>
+        `
+      },
+      {
+        id: "K6",
+        category: "light",
+        tag: "光的折射",
+        title: "光的折射：快慢介質偏折方向與水中看物體",
+        hint: "光速快到慢 → 偏向法線；光速慢到快 → 偏離法線；垂直射入不偏折。",
+        points: [
+          "<strong>折射成因</strong>：光斜射入不同介質時，因在不同介質中的行進速率不同而改變方向（光速：真空 ＞ 空氣 ＞ 水 ＞ 玻璃）。",
+          "<strong>偏折方向</strong>：由光速快的介質斜射入光速慢的介質時，<strong>偏向法線</strong>；由慢到快時，<strong>偏離法線</strong>。若<strong>垂直射入</strong>（入射角 0°），方向<strong>不偏折</strong>但速率會變。",
+          "<strong>水中看物體變淺</strong>：水中物體反射的光從水（慢）斜射入空氣（快）時<strong>偏離法線</strong>，人眼沿折射光線反向看去，會看到位置較高的<strong>虛像</strong>。"
+        ],
+        callout: "生活例子：插在水裡的筷子看起來「彎折」、游泳池看起來比實際淺，都是光線偏離法線形成的虛像。",
+        chartTitle: "光從水（慢）斜射入空氣（快）：偏離法線，眼睛看到較淺的虛像",
+        svg: `
+          
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRe-iS1wAjB74v2u1lu2I7R2_lO7CMYOwAQ0M5Rub8tgUcUGwXNa18aTn8&s=10"/>
+
+        `
+      }
+    ];
+
+    const questions = [
+      {
+        id: 1,
+        category: "wave",
+        tag: "波動觀念",
+        q: "關於波動的敘述，下列何者正確？",
+        options: [
+          "(A) 波前進時，介質會跟著波一起向遠方移動",
+          "(B) 繩波屬於縱波，聲波屬於橫波",
+          "(C) 波動傳遞的是能量，介質只在原處附近振動",
+          "(D) 光波是力學波，無法在真空中傳播"
+        ],
+        answer: "C",
+        explanation: "波動傳遞的是「能量」，介質只在原地振動（A 錯、C 對）。繩波是「橫波」，聲波是「縱波」（B 錯）。光波是「電磁波」，可在真空中傳播（D 錯）。"
+      },
+      {
+        id: 2,
+        category: "wave",
+        tag: "頻率與波速",
+        q: "某水波的波峰到相鄰波峰的距離為 0.4 m，若水面上的浮標每 2 秒上下完整振動 4 次，則此水波的頻率與波速分別為何？",
+        options: [
+          "(A) 2 Hz、0.8 m/s",
+          "(B) 0.5 Hz、0.2 m/s",
+          "(C) 2 Hz、0.2 m/s",
+          "(D) 4 Hz、1.6 m/s"
+        ],
+        answer: "A",
+        explanation: "波長 λ = 0.4 m。每 2 秒振動 4 次，所以頻率 f = 4 ÷ 2 = 2 Hz。波速 v = f × λ = 2 × 0.4 = 0.8 m/s。"
+      },
+      {
+        id: 3,
+        category: "wave",
+        tag: "波速固定陷阱",
+        q: "在同一條均勻拉緊的繩子上產生連續週期波，若將手上下振動的頻率提高為原本的 2 倍，則繩波的「波速」與「波長」會如何變化？",
+        options: [
+          "(A) 波速變 2 倍，波長不變",
+          "(B) 波速不變，波長變為 1/2 倍",
+          "(C) 波速變為 1/2 倍，波長變 2 倍",
+          "(D) 波速與波長都變 2 倍"
+        ],
+        answer: "B",
+        explanation: "同一條均勻繩子代表介質相同，波速 v 不變。由 v = f × λ 可知，v 固定時，f 變為 2 倍，λ 就會變為 1/2 倍。"
+      },
+      {
+        id: 4,
+        category: "light",
+        tag: "反射定律",
+        q: "一道光線斜射向平面鏡，若入射線與「鏡面」的夾角為 35°，則反射角為幾度？",
+        options: [
+          "(A) 35°",
+          "(B) 55°",
+          "(C) 70°",
+          "(D) 110°"
+        ],
+        answer: "B",
+        explanation: "法線與鏡面垂直（夾角 90°）。入射線與鏡面夾 35°，所以入射角 = 90° − 35° = 55°。根據反射定律，反射角＝入射角＝ 55°。"
+      },
+      {
+        id: 5,
+        category: "light",
+        tag: "平面鏡成像",
+        q: "關於平面鏡成像的敘述，下列何者錯誤？",
+        options: [
+          "(A) 平面鏡所成的像是虛像，無法投射在紙屏上",
+          "(B) 若你往平面鏡靠近 1 m，鏡中的你也會向鏡面靠近 1 m",
+          "(C) 平面鏡成像大小與物體相同，不會隨距離改變而變小",
+          "(D) 平面鏡成的像是倒立虛像"
+        ],
+        answer: "D",
+        explanation: "平面鏡成的是「正立」虛像，不是倒立像（D 錯）。A、B、C 敘述皆正確。"
+      },
+      {
+        id: 6,
+        category: "light",
+        tag: "漫反射",
+        q: "我們能從教室各個角落看到黑板上寫的字，主要是因為光線射到黑板表面時發生了什麼現象？",
+        options: [
+          "(A) 折射",
+          "(B) 漫反射",
+          "(C) 全反射",
+          "(D) 光的色散"
+        ],
+        answer: "B",
+        explanation: "黑板表面較粗糙，光線照上去會往四面八方散開，這就是「漫反射」，讓不同位置的人都能接收到光線。"
+      },
+      {
+        id: 7,
+        category: "light",
+        tag: "光的折射",
+        q: "游泳池的水看起來比實際淺，主要是下列哪一個原因造成的？",
+        options: [
+          "(A) 光在水中沿曲線前進",
+          "(B) 光從水斜射入空氣時偏向法線",
+          "(C) 光從水斜射入空氣時偏離法線，形成較淺的虛像",
+          "(D) 水面發生漫反射使視線被遮擋"
+        ],
+        answer: "C",
+        explanation: "池底反射的光線從水（光速較慢）斜射入空氣（光速較快）時會「偏離法線」，人眼沿著折射光線往回看，會覺得池底位置比實際高（看起來比較淺），這是虛像。"
+      },
+      {
+        id: 8,
+        category: "light",
+        tag: "垂直入射",
+        q: "一道光線從空氣垂直射入玻璃磚中，下列敘述何者正確？",
+        options: [
+          "(A) 入射角為 90°，光線會明顯偏折",
+          "(B) 光線前進方向不偏折，但光速會變慢",
+          "(C) 光線前進方向不偏折，光速維持不變",
+          "(D) 因為垂直射入，所以不會發生任何反射"
+        ],
+        answer: "B",
+        explanation: "垂直射入時，光線與法線夾角（入射角）為 0°，因此「不偏折」；但光在玻璃中的速率比在空氣中慢，所以「光速會變慢」。"
+      },
+      {
+        id: 9,
+        category: "advanced",
+        tag: "半徑與振幅",
+        q: "在平靜的水池中央丟入一顆石頭，產生一圈圈往外擴散的圓形水波（假設忽略水與空氣的摩擦損耗）。當水波半徑 r 逐漸變大時，下列敘述何者正確？",
+        options: [
+          "(A) 水波的能量強度隨半徑增大而增強",
+          "(B) 水波的振幅會隨半徑增大而變小",
+          "(C) 水波的頻率會隨半徑增大而變小",
+          "(D) 水分子會跟著水波一起跑到池邊"
+        ],
+        answer: "B",
+        explanation: "圓形水波向外擴散時，半徑 r 變大，能量分攤在更大的範圍，所以能量強度減弱（A 錯）、振幅變小（B 對）。波源振動頻率固定，擴散過程中頻率不變（C 錯）；水分子只在原地振動，不會跑到池邊（D 錯）。"
+      },
+      {
+        id: 10,
+        category: "advanced",
+        tag: "球面波強度",
+        q: "某點光源在均勻透明空間中向四周均勻發光（視為球面波，忽略吸收）。若距離光源 1 m 處的單位面積光能量強度為 I，則距離光源 3 m 處的單位面積光能量強度為多少？",
+        options: [
+          "(A) 1/3 I",
+          "(B) 1/6 I",
+          "(C) 1/9 I",
+          "(D) 9 I"
+        ],
+        answer: "C",
+        explanation: "球面波表面積與半徑平方成正比（4πr²），距離從 1 m 變為 3 m（半徑變 3 倍），面積變為 3² = 9 倍，因此單位面積能量強度變為 1/9 I。"
+      },
+      {
+        id: 11,
+        category: "advanced",
+        tag: "透射波變化",
+        q: "一道繩波從輕繩傳向重繩（重繩波速較慢），在交界處同時產生反射波與透射波。關於「透射波」與「原本入射波」的比較，下列何者正確？",
+        options: [
+          "(A) 頻率相同，波長變短",
+          "(B) 頻率變小，波長不變",
+          "(C) 頻率相同，波速變快",
+          "(D) 頻率變大，波速變慢"
+        ],
+        answer: "A",
+        explanation: "透射波進入新介質時，頻率 f 維持不變。重繩波速較慢（v 變小），由 v = f × λ 可知，頻率不變、波速變小時，波長 λ 也會變短。"
+      },
+      {
+        id: 12,
+        category: "advanced",
+        tag: "反射波變化",
+        q: "承上題，交界處產生的「反射波」與原本入射波相比，下列敘述何者最合理？",
+        options: [
+          "(A) 反射波的振幅通常比入射波小",
+          "(B) 反射波的頻率會變為入射波的一半",
+          "(C) 反射波進入了重繩中傳播",
+          "(D) 反射波的波速會變成重繩中的波速"
+        ],
+        answer: "A",
+        explanation: "入射波在交界處分成反射波與透射波，能量被分走一部分，所以反射波的振幅通常比入射波小（A 對）。反射波留在原介質（輕繩），所以頻率、波速皆與原本相同（B、C、D 錯）。"
+      }
+    ];
+
+    const state = {
+      mode: "knowledge", // "knowledge" | "quiz"
+      kFilter: "all",
+      openK: { K1: true },
+      qFilter: "all",
+      selectedQ: {},
+      openQ: {}
+    };
+
+    const tabKnowledge = document.getElementById("tabKnowledge");
+    const tabQuiz = document.getElementById("tabQuiz");
+    const knowledgeSection = document.getElementById("knowledgeSection");
+    const quizSection = document.getElementById("quizSection");
+
+    const knowledgeListEl = document.getElementById("knowledgeList");
+    const quizListEl = document.getElementById("quizList");
+    const statsTextEl = document.getElementById("statsText");
+
+    function switchMode(mode) {
+      state.mode = mode;
+      if (mode === "knowledge") {
+        tabKnowledge.classList.add("active");
+        tabQuiz.classList.remove("active");
+        knowledgeSection.classList.remove("hidden");
+        quizSection.classList.add("hidden");
+        renderKnowledge();
+      } else {
+        tabQuiz.classList.add("active");
+        tabKnowledge.classList.remove("active");
+        quizSection.classList.remove("hidden");
+        knowledgeSection.classList.add("hidden");
+        renderQuiz();
+      }
+    }
+
+    function renderKnowledge() {
+      const visible = knowledgeCards.filter(k => state.kFilter === "all" || k.category === state.kFilter);
+      knowledgeListEl.innerHTML = visible.map(k => {
+        const isOpen = !!state.openK[k.id];
+        return `
+          <article class="card">
+            <div class="card-top">
+              <span class="k-num">${k.id} 知識點</span>
+              <span class="badge teal">${k.tag}</span>
+            </div>
+            <h2 class="question">${k.title}</h2>
+            <p class="summary-hint">${k.hint}</p>
+            <div class="card-actions">
+              <button class="reveal-btn teal" data-ktoggle="${k.id}">
+                ${isOpen ? "收合重點與圖表" : "點開看重點與圖表"}
+              </button>
+            </div>
+            <div class="drawer teal ${isOpen ? "open" : ""}">
+              <ul>${k.points.map(pt => `<li>${pt}</li>`).join("")}</ul>
+              <div class="callout">${k.callout}</div>
+              <div class="chart-box">
+                <div class="chart-title">${k.chartTitle}</div>
+                ${k.svg}
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function updateQuizStats() {
+      const answeredIds = Object.keys(state.selectedQ);
+      const correctCount = answeredIds.filter(
+        id => state.selectedQ[id] === questions.find(q => q.id === Number(id)).answer
+      ).length;
+      statsTextEl.textContent = `已作答：${answeredIds.length} / ${questions.length}｜答對：${correctCount}`;
+    }
+
+    function renderQuiz() {
+      const visible = questions.filter(q => state.qFilter === "all" || q.category === state.qFilter);
+      quizListEl.innerHTML = visible.map(q => {
+        const picked = state.selectedQ[q.id];
+        const isOpen = !!state.openQ[q.id];
+
+        let feedbackHtml = "";
+        if (picked) {
+          if (picked === q.answer) {
+            feedbackHtml = `<span class="feedback ok">答對了！太棒了 🎉</span>`;
+          } else {
+            feedbackHtml = `<span class="feedback no">再想想看，正確答案是 (${q.answer})</span>`;
+          }
+        }
+
+        const optionsHtml = q.options.map(opt => {
+          const letter = opt.trim().charAt(1);
+          let cls = "option-btn";
+          if (picked) {
+            if (letter === q.answer) cls += " correct";
+            else if (letter === picked) cls += " wrong";
+          }
+          return `<button class="${cls}" data-qid="${q.id}" data-choice="${letter}">${opt}</button>`;
+        }).join("");
+
+        return `
+          <article class="card">
+            <div class="card-top">
+              <span class="q-num">第 ${q.id} 題</span>
+              <span class="badge">${q.tag}</span>
+            </div>
+            <p class="question">${q.q}</p>
+            <div class="options">${optionsHtml}</div>
+            <div class="card-actions">
+              <div>${feedbackHtml}</div>
+              <button class="reveal-btn" data-qtoggle="${q.id}">
+                ${isOpen ? "隱藏答案與詳解" : "看答案與詳解"}
+              </button>
+            </div>
+            <div class="drawer ${isOpen ? "open" : ""}">
+              <div class="ans-line">正確答案：(${q.answer})</div>
+              <div><strong>詳解：</strong>${q.explanation}</div>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      updateQuizStats();
+    }
+
+    tabKnowledge.addEventListener("click", () => switchMode("knowledge"));
+    tabQuiz.addEventListener("click", () => switchMode("quiz"));
+
+    knowledgeListEl.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-ktoggle]");
+      if (!btn) return;
+      const kid = btn.dataset.ktoggle;
+      state.openK[kid] = !state.openK[kid];
+      renderKnowledge();
+    });
+
+    document.querySelectorAll("[data-kfilter]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("[data-kfilter]").forEach(b => b.classList.remove("active", "teal-filter"));
+        btn.classList.add("active", "teal-filter");
+        state.kFilter = btn.dataset.kfilter;
+        renderKnowledge();
+      });
+    });
+
+    document.getElementById("toggleAllKnowledgeBtn").addEventListener("click", () => {
+      knowledgeCards.forEach(k => { state.openK[k.id] = true; });
+      renderKnowledge();
+    });
+
+    document.getElementById("collapseAllKnowledgeBtn").addEventListener("click", () => {
+      state.openK = {};
+      renderKnowledge();
+    });
+
+    quizListEl.addEventListener("click", (e) => {
+      const optBtn = e.target.closest(".option-btn");
+      if (optBtn) {
+        const qid = Number(optBtn.dataset.qid);
+        state.selectedQ[qid] = optBtn.dataset.choice;
+        state.openQ[qid] = true;
+        renderQuiz();
+        return;
+      }
+
+      const revBtn = e.target.closest("[data-qtoggle]");
+      if (revBtn) {
+        const qid = Number(revBtn.dataset.qtoggle);
+        state.openQ[qid] = !state.openQ[qid];
+        renderQuiz();
+      }
+    });
+
+    document.querySelectorAll("[data-qfilter]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("[data-qfilter]").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        state.qFilter = btn.dataset.qfilter;
+        renderQuiz();
+      });
+    });
+
+    document.getElementById("toggleAllQuizBtn").addEventListener("click", () => {
+      const anyClosed = questions.some(q => !state.openQ[q.id]);
+      questions.forEach(q => { state.openQ[q.id] = anyClosed; });
+      document.getElementById("toggleAllQuizBtn").textContent = anyClosed ? "全部收合詳解" : "全部展開詳解";
+      renderQuiz();
+    });
+
+    document.getElementById("resetQuizBtn").addEventListener("click", () => {
+      state.selectedQ = {};
+      state.openQ = {};
+      document.getElementById("toggleAllQuizBtn").textContent = "全部展開詳解";
+      renderQuiz();
+    });
+
+    renderKnowledge();
+  </script>
+</body>
+</html>
