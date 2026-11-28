@@ -1,3 +1,141 @@
-<html>
-    <a href="./波動與光.html" class="btn-link">11/22:波動與光</a>
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自然科學筆記目錄</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f8f7f4;
+      background-image: radial-gradient(#e4e1d8 1px, transparent 1px);
+      background-size: 24px 24px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+      color: #2c2a29;
+      padding: 24px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      background: #ffffff;
+      padding: 40px 32px;
+      border-radius: 20px;
+      box-shadow: 0 12px 32px rgba(44, 42, 41, 0.06);
+      border: 1px solid #efede8;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+      color: #1f1e1d;
+    }
+
+    p.subtitle {
+      font-size: 0.9rem;
+      color: #78746e;
+      margin-bottom: 28px;
+    }
+
+    .link-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .btn-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-decoration: none;
+      background: #fcfbf9;
+      border: 1px solid #e6e2da;
+      border-radius: 14px;
+      padding: 16px 20px;
+      color: #2c2a29;
+      transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .btn-link:hover {
+      background: #ffffff;
+      border-color: #3b82f6;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(59, 130, 246, 0.12);
+    }
+
+    .btn-link:active {
+      transform: translateY(0);
+    }
+
+    .btn-content {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .date-badge {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #2563eb;
+      background: #eff6ff;
+      padding: 5px 10px;
+      border-radius: 8px;
+      letter-spacing: 0.03em;
+      flex-shrink: 0;
+    }
+
+    .topic-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .arrow {
+      color: #a8a29e;
+      font-size: 1.1rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .btn-link:hover .arrow {
+      color: #2563eb;
+      transform: translateX(4px);
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container">
+    <h1>學習單元目錄</h1>
+    <p class="subtitle">點擊下方單元開啟對應筆記</p>
+
+    <div class="link-list">
+      <a href="./波動與光.html" class="btn-link">
+        <div class="btn-content">
+          <span class="date-badge">11/22</span>
+          <span class="topic-title">波動與光</span>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+
+      <a href="./反射折射,面鏡與透鏡.html" class="btn-link">
+        <div class="btn-content">
+          <span class="date-badge">11/27</span>
+          <span class="topic-title">反射折射,面鏡與透鏡</span>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+  </main>
+
+</body>
 </html>

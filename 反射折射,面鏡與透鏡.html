@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>國二理化｜光的反射與折射、面鏡與透鏡成像 互動卡片</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --primary: #2563eb;
+      --primary-soft: #eff6ff;
+      --teal: #0f766e;
+      --teal-soft: #f0fdfa;
+      --success: #15803d;
+      --success-bg: #dcfce7;
+      --success-border: #86efac;
+      --error: #b91c1c;
+      --error-bg: #fee2e2;
+      --error-border: #fca5a5;
+      --border: #e2e8f0;
+      --shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.68;
+      padding: 24px 16px 72px;
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    .top-nav {
+      margin-bottom: 14px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+      transition: all 0.15s ease;
+    }
+
+    .back-link:hover {
+      background: var(--primary-soft);
+      border-color: #93c5fd;
+      color: var(--primary);
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e40af, #0284c7 55%, #0d9488);
+      color: #fff;
+      padding: 24px 26px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    header h1 {
+      margin: 0 0 6px;
+      font-size: 1.48rem;
+    }
+
+    header p {
+      margin: 0;
+      opacity: 0.94;
+      font-size: 0.96rem;
+    }
+
+    .mode-switch {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .mode-btn {
+      flex: 1 1 220px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: all 0.15s ease;
+    }
+
+    .mode-btn:hover {
+      border-color: #93c5fd;
+      background: var(--primary-soft);
+    }
+
+    .mode-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .mode-btn.teal.active {
+      background: var(--teal);
+      border-color: var(--teal);
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--card);
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+
+    .filter-group, .action-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      padding: 7px 13px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.15s ease;
+    }
+
+    button:hover {
+      border-color: #cbd5e1;
+      background: #f8fafc;
+    }
+
+    button.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    button.active.teal-filter {
+      background: var(--teal);
+      border-color: var(--teal);
+    }
+
+    .stats {
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .card-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .q-num {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1rem;
+    }
+
+    .k-num {
+      font-weight: 700;
+      color: var(--teal);
+      font-size: 1rem;
+    }
+
+    .badge {
+      font-size: 0.78rem;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: #f1f5f9;
+      color: #475569;
+      font-weight: 600;
+    }
+
+    .badge.teal {
+      background: var(--teal-soft);
+      color: var(--teal);
+    }
+
+    .question {
+      font-size: 1.06rem;
+      font-weight: 700;
+      margin: 0 0 12px;
+    }
+
+    .summary-hint {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .option-btn {
+      width: 100%;
+      text-align: left;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #fff;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .option-btn:hover {
+      background: var(--primary-soft);
+      border-color: #93c5fd;
+    }
+
+    .option-btn.correct {
+      background: var(--success-bg);
+      border-color: var(--success-border);
+      color: var(--success);
+      font-weight: 600;
+    }
+
+    .option-btn.wrong {
+      background: var(--error-bg);
+      border-color: var(--error-border);
+      color: var(--error);
+      font-weight: 600;
+    }
+
+    .card-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .reveal-btn {
+      background: var(--primary-soft);
+      color: var(--primary);
+      border-color: #bfdbfe;
+      font-weight: 600;
+    }
+
+    .reveal-btn:hover {
+      background: #dbeafe;
+    }
+
+    .reveal-btn.teal {
+      background: var(--teal-soft);
+      color: var(--teal);
+      border-color: #99f6e4;
+    }
+
+    .reveal-btn.teal:hover {
+      background: #ccfbf1;
+    }
+
+    .feedback {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .feedback.ok { color: var(--success); }
+    .feedback.no { color: var(--error); }
+
+    .drawer {
+      display: none;
+      margin-top: 14px;
+      padding: 16px 18px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border-left: 4px solid var(--primary);
+      font-size: 0.94rem;
+    }
+
+    .drawer.teal {
+      border-left-color: var(--teal);
+      background: #f9fefd;
+    }
+
+    .drawer.open {
+      display: block;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .drawer .ans-line {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .drawer ul {
+      margin: 8px 0 14px;
+      padding-left: 20px;
+    }
+
+    .drawer li {
+      margin-bottom: 6px;
+    }
+
+    .callout {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      color: #78350f;
+      padding: 10px 12px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      margin-bottom: 14px;
+    }
+
+    .chart-box {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      margin-top: 8px;
+    }
+
+    .chart-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--muted);
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .chart-box svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="top-nav">
+      <a class="back-link" href="./index.html">← 回到學習單元目錄</a>
+    </nav>
+
+    <header>
+      <h1>國二理化｜光的反射與折射、面鏡與透鏡成像</h1>
+      <p>點開「知識點卡片」看生活講解與光路圖表，再到「互動練習題」挑戰 15 題隨堂測驗！</p>
+    </header>
+
+    <div class="mode-switch">
+      <button class="mode-btn teal active" id="tabKnowledge">📚 知識點卡片（6 張）</button>
+      <button class="mode-btn" id="tabQuiz">✏️ 互動練習題（15 題）</button>
+    </div>
+
+    <!-- 知識點專區 -->
+    <section id="knowledgeSection">
+      <div class="toolbar">
+        <div class="filter-group" id="kFilters">
+          <button class="active teal-filter" data-kfilter="all">全部知識點（6）</button>
+          <button data-kfilter="reflection">反射與面鏡</button>
+          <button data-kfilter="refraction">光的折射與色散</button>
+          <button data-kfilter="lens">透鏡成像與眼睛</button>
+        </div>
+        <div class="action-group">
+          <button id="toggleAllKnowledgeBtn">全部展開圖文</button>
+          <button id="collapseAllKnowledgeBtn">全部收合</button>
+        </div>
+      </div>
+      <div class="card-list" id="knowledgeList"></div>
+    </section>
+
+    <!-- 練習題專區 -->
+    <section id="quizSection" class="hidden">
+      <div class="toolbar">
+        <div class="filter-group" id="qFilters">
+          <button class="active" data-qfilter="all">全部（15）</button>
+          <button data-qfilter="reflection">反射與面鏡（5）</button>
+          <button data-qfilter="refraction">折射與色散（4）</button>
+          <button data-qfilter="lens">透鏡成像與眼睛（6）</button>
+        </div>
+        <div class="action-group">
+          <span class="stats" id="statsText">已作答：0 / 15｜答對：0</span>
+          <button id="toggleAllQuizBtn">全部展開詳解</button>
+          <button id="resetQuizBtn">重新作答</button>
+        </div>
+      </div>
+      <div class="card-list" id="quizList"></div>
+    </section>
+  </div>
+
+  <script>
+    const knowledgeCards = [
+      {
+        id: "K1",
+        category: "reflection",
+        tag: "反射定律與漫反射",
+        title: "光的反射定律、單向反射與漫反射",
+        hint: "入射角＝反射角，角度永遠是跟「法線」夾出來的，不是跟鏡面！",
+        points: [
+          "<strong>反射定律</strong>：1. 入射線、反射線、法線在同一平面上；2. <strong>入射角 ＝ 反射角</strong>。",
+          "<strong>法線</strong>：垂直於反射面的假想線（夾角 90°）。若光線與鏡面夾 30°，入射角為 90° − 30° = 60°。",
+          "<strong>單向反射 vs. 漫反射</strong>：平滑鏡面產生單向反射；粗糙表面（如黑板、書本）使反射光散向四方，稱為<strong>漫反射</strong>（每條光線仍遵守反射定律）。"
+        ],
+        callout: "考試陷阱：漫反射「有」遵守反射定律！只是因為表面凹凸不平，法線方向不同，反射光才分散出去。",
+        chartTitle: "鏡面單向反射（左）與粗糙表面漫反射（右）對比圖",
+        svg: `
+          <svg viewBox="0 0 760 195" xmlns="http://www.w3.org/2000/svg">
+            <text x="115" y="24" font-size="13" font-weight="bold" fill="#0f766e">1. 平滑鏡面：單向反射</text>
+            <rect x="40" y="148" width="290" height="8" fill="#64748b"/>
+            <line x1="185" y1="36" x2="185" y2="148" stroke="#0f766e" stroke-width="1.8" stroke-dasharray="5,4"/>
+            <text x="192" y="48" font-size="11" fill="#0f766e" font-weight="bold">法線</text>
+            <line x1="85" y1="52" x2="185" y2="148" stroke="#2563eb" stroke-width="2.5"/>
+            <polygon points="175,135 185,148 170,141" fill="#2563eb"/>
+            <text x="65" y="45" font-size="11" fill="#2563eb" font-weight="bold">入射線</text>
+            <line x1="185" y1="148" x2="285" y2="52" stroke="#ef4444" stroke-width="2.5"/>
+            <polygon points="272,59 285,52 279,66" fill="#ef4444"/>
+            <text x="275" y="45" font-size="11" fill="#ef4444" font-weight="bold">反射線</text>
+            <text x="142" y="105" font-size="11" fill="#2563eb" font-weight="bold">入射角</text>
+            <text x="193" y="105" font-size="11" fill="#ef4444" font-weight="bold">反射角</text>
+
+            <line x1="380" y1="15" x2="380" y2="180" stroke="#e2e8f0" stroke-width="2"/>
+
+            <text x="485" y="24" font-size="13" font-weight="bold" fill="#0f766e">2. 粗糙表面：漫反射</text>
+            <path d="M 415 150 L 445 142 L 475 153 L 505 140 L 535 152 L 565 141 L 595 152 L 625 143 L 655 151 L 695 144" fill="none" stroke="#64748b" stroke-width="3"/>
+            <line x1="430" y1="45" x2="465" y2="147" stroke="#2563eb" stroke-width="2"/>
+            <line x1="490" y1="45" x2="525" y2="147" stroke="#2563eb" stroke-width="2"/>
+            <line x1="550" y1="45" x2="585" y2="147" stroke="#2563eb" stroke-width="2"/>
+            <line x1="465" y1="147" x2="430" y2="65" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
+            <line x1="525" y1="147" x2="595" y2="55" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
+            <line x1="585" y1="147" x2="685" y2="85" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
+            <text x="455" y="175" font-size="11" fill="#475569" font-weight="bold">反射光散向各處，各角落都能看見</text>
+          </svg>
+        `
+      },
+      {
+        id: "K2",
+        category: "reflection",
+        tag: "平面鏡與曲面鏡",
+        title: "平面鏡、凹面鏡與凸面鏡的成像與應用",
+        hint: "平面鏡等大虛像；凹面鏡會聚光線；凸面鏡發散光線、視野廣。",
+        points: [
+          "<strong>平面鏡</strong>：成<strong>正立、等大、左右相反、虛像</strong>。物距＝像距，像的大小不隨人遠近而改變。",
+          "<strong>凹面鏡（聚光）</strong>：平行主軸的光反射後會聚於焦點。物體在焦點內成<strong>正立放大虛像</strong>（化妝鏡）；光源放焦點可射出平行光（手電筒、車頭燈）。",
+          "<strong>凸面鏡（發散）</strong>：平行主軸的光反射後發散，成像永遠是<strong>正立縮小虛像</strong>，可視範圍大（路口廣角鏡、汽車後照鏡）。"
+        ],
+        callout: "生活速記：路口轉彎鏡要看「更多車子」→ 選成像縮小但視野廣的「凸面鏡」；手電筒要把光「集中往前照」→ 選「凹面鏡」。",
+        chartTitle: "凹面鏡會聚光線（左）與凸面鏡發散光線（右）比較",
+        svg: `
+          <svg viewBox="0 0 760 195" xmlns="http://www.w3.org/2000/svg">
+            <text x="115" y="24" font-size="13" font-weight="bold" fill="#0f766e">凹面鏡（會聚光線）</text>
+            <line x1="40" y1="100" x2="340" y2="100" stroke="#94a3b8" stroke-dasharray="4,4"/>
+            <path d="M 285 40 Q 320 100, 285 160" fill="none" stroke="#475569" stroke-width="4"/>
+            <line x1="65" y1="62" x2="298" y2="62" stroke="#2563eb" stroke-width="2.2"/>
+            <line x1="65" y1="138" x2="298" y2="138" stroke="#2563eb" stroke-width="2.2"/>
+            <line x1="298" y1="62" x2="175" y2="115" stroke="#ef4444" stroke-width="2.2"/>
+            <line x1="298" y1="138" x2="175" y2="85" stroke="#ef4444" stroke-width="2.2"/>
+            <circle cx="212" cy="100" r="4.5" fill="#dc2626"/>
+            <text x="205" y="88" font-size="12" fill="#dc2626" font-weight="bold">焦點 F</text>
+
+            <line x1="380" y1="15" x2="380" y2="180" stroke="#e2e8f0" stroke-width="2"/>
+
+            <text x="485" y="24" font-size="13" font-weight="bold" fill="#0f766e">凸面鏡（發散光線、視野廣）</text>
+            <line x1="410" y1="100" x2="720" y2="100" stroke="#94a3b8" stroke-dasharray="4,4"/>
+            <path d="M 650 40 Q 615 100, 650 160" fill="none" stroke="#475569" stroke-width="4"/>
+            <line x1="430" y1="65" x2="638" y2="65" stroke="#2563eb" stroke-width="2.2"/>
+            <line x1="430" y1="135" x2="638" y2="135" stroke="#2563eb" stroke-width="2.2"/>
+            <line x1="638" y1="65" x2="500" y2="30" stroke="#ef4444" stroke-width="2.2"/>
+            <line x1="638" y1="135" x2="500" y2="170" stroke="#ef4444" stroke-width="2.2"/>
+            <line x1="638" y1="65" x2="700" y2="100" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,3"/>
+            <line x1="638" y1="135" x2="700" y2="100" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="3,3"/>
+            <circle cx="700" cy="100" r="4" fill="#dc2626"/>
+            <text x="682" y="88" font-size="11" fill="#dc2626" font-weight="bold">虛焦點 F</text>
+          </svg>
+        `
+      },
+      {
+        id: "K3",
+        category: "refraction",
+        tag: "光的折射與偏折",
+        title: "光的折射原因與「快慢介質」偏折方向",
+        hint: "光速快到慢 → 偏向法線；光速慢到快 → 偏離法線；垂直射入不偏折。",
+        points: [
+          "<strong>折射原因</strong>：光在不同介質中的傳播速率不同（<strong>空氣 ＞ 水 ＞ 玻璃</strong>）。斜射過介面時，因速率改變導致前進方向偏折。",
+          "<strong>偏折方向</strong>：由快介質進入慢介質時<strong>偏向法線</strong>（折射角較小）；由慢介質進入快介質時<strong>偏離法線</strong>（折射角較大）。",
+          "<strong>垂直射入</strong>：入射角為 0° 時，光線<strong>不偏折</strong>，但光速仍會改變。",
+          "<strong>視覺錯覺</strong>：岸上看水中魚（光從水入空氣偏離法線）→ 魚看起來<strong>較淺</strong>；水裡看岸上鳥（光從空氣入水偏向法線）→ 鳥看起來<strong>較高</strong>。"
+        ],
+        callout: "口訣：光速「越慢」的介質，光線越「靠近法線」（慢＝近法線，快＝離法線）。",
+        chartTitle: "光從空氣（快）斜射入水（慢）偏向法線示意圖",
+        svg: `
+          <svg viewBox="0 0 760 195" xmlns="http://www.w3.org/2000/svg">
+            <rect x="60" y="20" width="640" height="80" fill="#f0f9ff"/>
+            <rect x="60" y="100" width="640" height="80" fill="#bae6fd"/>
+            <line x1="60" y1="100" x2="700" y2="100" stroke="#0284c7" stroke-width="2.5"/>
+            <text x="75" y="42" font-size="12" font-weight="bold" fill="#0369a1">空氣（光速較快，角度較大）</text>
+            <text x="75" y="168" font-size="12" font-weight="bold" fill="#0c4a6e">水（光速較慢，角度較小）</text>
+
+            <line x1="380" y1="22" x2="380" y2="178" stroke="#64748b" stroke-width="1.8" stroke-dasharray="5,4"/>
+            <text x="388" y="36" font-size="11" fill="#475569" font-weight="bold">法線</text>
+
+            <line x1="220" y1="30" x2="380" y2="100" stroke="#2563eb" stroke-width="2.5"/>
+            <polygon points="367,90 380,100 364,98" fill="#2563eb"/>
+            <text x="205" y="65" font-size="12" fill="#2563eb" font-weight="bold">入射線（入射角大）</text>
+
+            <line x1="380" y1="100" x2="465" y2="175" stroke="#ef4444" stroke-width="2.5"/>
+            <polygon points="452,168 465,175 459,161" fill="#ef4444"/>
+            <text x="455" y="142" font-size="12" fill="#ef4444" font-weight="bold">折射線（偏向法線、折射角小）</text>
+          </svg>
+        `
+      },
+      {
+        id: "K4",
+        category: "refraction",
+        tag: "光的色散",
+        title: "三稜鏡色散與七色光速率比較",
+        hint: "紅光跑最快、偏折最小（在最上方）；紫光跑最慢、偏折最大（在最下方）。",
+        points: [
+          "<strong>色散現象</strong>：白光（太陽光）是由多種色光混合而成的複色光。通過三稜鏡時，各色光在玻璃中的光速不同，偏折程度不同而分開。",
+          "<strong>光速與偏折順序</strong>：在玻璃中，光速 <strong>紅 ＞ 橙 ＞ 黃 ＞ 綠 ＞ 藍 ＞ 靛 ＞ 紫</strong>；因此<strong>紅光偏折最小</strong>，<strong>紫光偏折最大</strong>。",
+          "<strong>三原色光</strong>：<strong>紅（R）、綠（G）、藍（B）</strong>三色光等比例混合會變成<strong>白光</strong>。"
+        ],
+        callout: "記憶法：紅光波長最長、跑得最穩（偏折最小）；紫光最容易轉彎（偏折最大）。",
+        chartTitle: "白光通過三稜鏡發生色散（紅光偏折最小、紫光偏折最大）",
+        svg: `
+          <svg viewBox="0 0 760 190" xmlns="http://www.w3.org/2000/svg">
+            <rect x="40" y="20" width="680" height="150" rx="10" fill="#0f172a"/>
+            <polygon points="340,42 260,152 420,152" fill="#38bdf8" fill-opacity="0.28" stroke="#7dd3fc" stroke-width="2"/>
+            <line x1="110" y1="118" x2="294" y2="105" stroke="#ffffff" stroke-width="3.5"/>
+            <text x="115" y="106" font-size="12" fill="#f8fafc" font-weight="bold">白光（太陽光）</text>
+            <line x1="294" y1="105" x2="386" y2="105" stroke="#ef4444" stroke-width="2"/>
+            <line x1="294" y1="105" x2="394" y2="116" stroke="#22c55e" stroke-width="2"/>
+            <line x1="294" y1="105" x2="402" y2="127" stroke="#a855f7" stroke-width="2"/>
+
+            <line x1="386" y1="105" x2="615" y2="84" stroke="#ef4444" stroke-width="3"/>
+            <line x1="394" y1="116" x2="615" y2="116" stroke="#22c55e" stroke-width="3"/>
+            <line x1="402" y1="127" x2="615" y2="148" stroke="#a855f7" stroke-width="3"/>
+
+            <text x="625" y="88" font-size="12" fill="#fca5a5" font-weight="bold">紅光（偏折最小）</text>
+            <text x="625" y="120" font-size="12" fill="#86efac" font-weight="bold">綠光</text>
+            <text x="625" y="152" font-size="12" fill="#d8b4fe" font-weight="bold">紫光（偏折最大）</text>
+          </svg>
+        `
+      },
+      {
+        id: "K5",
+        category: "lens",
+        tag: "凸透鏡與凹透鏡成像",
+        title: "凸透鏡（5種位置）與凹透鏡成像總整理",
+        hint: "焦點外成倒立實像（物近像遠像變大）；焦點內成正立放大虛像；凹透鏡永遠正立縮小虛像。",
+        points: [
+          "<strong>凸透鏡（會聚透鏡）</strong>：<br/>• 物距 ＞ 2f：<strong>倒立縮小實像</strong>（像在 f～2f 間，如照相機）<br/>• 物距 ＝ 2f：<strong>倒立等大實像</strong>（像在 2f 處）<br/>• f ＜ 物距 ＜ 2f：<strong>倒立放大實像</strong>（像在 2f 外，如投影機）<br/>• 物距 ＝ f：<strong>不成像</strong>（折射光平行）<br/>• 物距 ＜ f：<strong>正立放大虛像</strong>（與物同側，如放大鏡）",
+          "<strong>凹透鏡（發散透鏡）</strong>：無論物距遠近，永遠成<strong>正立縮小虛像</strong>（與物同側）。",
+          "<strong>實像 vs. 虛像判別</strong>：透鏡成像中，<strong>實像必倒立（異側，紙屏可接）；虛像必正立（同側，紙屏不可接）</strong>。"
+        ],
+        callout: "必背口訣：凸透鏡在焦點外「物近像遠像變大」；看到「正立放大」一定是凸透鏡（物在焦點內），看到「正立縮小」一定是凹透鏡！",
+        chartTitle: "凸透鏡成像區域分界（2F、F）與實像／虛像分布",
+        svg: `
+          <svg viewBox="0 0 760 195" xmlns="http://www.w3.org/2000/svg">
+            <line x1="30" y1="105" x2="730" y2="105" stroke="#64748b" stroke-width="1.5"/>
+            <ellipse cx="380" cy="105" rx="12" ry="70" fill="#bae6fd" stroke="#0284c7" stroke-width="2"/>
+            <text x="362" y="25" font-size="12" font-weight="bold" fill="#0369a1">凸透鏡</text>
+
+            <circle cx="160" cy="105" r="4" fill="#1e293b"/><text x="152" y="123" font-size="11" font-weight="bold">2F</text>
+            <circle cx="270" cy="105" r="4" fill="#1e293b"/><text x="266" y="123" font-size="11" font-weight="bold">F</text>
+            <circle cx="490" cy="105" r="4" fill="#1e293b"/><text x="486" y="123" font-size="11" font-weight="bold">F'</text>
+            <circle cx="600" cy="105" r="4" fill="#1e293b"/><text x="592" y="123" font-size="11" font-weight="bold">2F'</text>
+
+            <rect x="45" y="45" width="105" height="34" rx="6" fill="#eff6ff" stroke="#93c5fd"/>
+            <text x="54" y="66" font-size="11" fill="#1d4ed8" font-weight="bold">＞2F：縮小實像</text>
+
+            <rect x="170" y="45" width="90" height="34" rx="6" fill="#eff6ff" stroke="#93c5fd"/>
+            <text x="176" y="66" font-size="11" fill="#1d4ed8" font-weight="bold">F~2F：放大實像</text>
+
+            <rect x="280" y="45" width="82" height="34" rx="6" fill="#f0fdfa" stroke="#5eead4"/>
+            <text x="285" y="66" font-size="11" fill="#0f766e" font-weight="bold">＜F：放大虛像</text>
+
+            <text x="435" y="62" font-size="12" fill="#dc2626" font-weight="bold">右側（異側）：倒立實像區（可投射在紙屏）</text>
+            <text x="120" y="158" font-size="12" fill="#0f766e" font-weight="bold">左側（同側）：物在 F 內時，形成正立放大虛像</text>
+          </svg>
+        `
+      },
+      {
+        id: "K6",
+        category: "lens",
+        tag: "眼睛構造與視力矯正",
+        title: "眼睛成像原理、近視眼與遠視眼矯正",
+        hint: "近視成像在視網膜「前」→ 戴凹透鏡；遠視成像在視網膜「後」→ 戴凸透鏡。",
+        points: [
+          "<strong>正常眼睛</strong>：晶狀體相當於<strong>凸透鏡</strong>，視網膜相當於<strong>屏幕</strong>，物體在視網膜上成<strong>倒立縮小實像</strong>（大腦再自動轉正）。看近物時睫狀肌收縮使晶狀體變厚（焦距變短）。",
+          "<strong>近視眼</strong>：晶狀體過厚或眼球過長，遠處物體成像在<strong>視網膜前方</strong> → 配戴<strong>凹透鏡</strong>先將光線發散，使像後退落回視網膜上。",
+          "<strong>遠視眼／老花眼</strong>：晶狀體過薄（或調節力退化）或眼球過短，近處物體成像在<strong>視網膜後方</strong> → 配戴<strong>凸透鏡</strong>先將光線會聚，使像前移落回視網膜上。"
+        ],
+        callout: "防呆口訣：「近凹遠凸」——近視戴凹透鏡，遠視（老花）戴凸透鏡！",
+        chartTitle: "近視眼（像在網膜前，戴凹透鏡）與遠視眼（像在網膜後，戴凸透鏡）",
+        svg: `
+          <svg viewBox="0 0 760 195" xmlns="http://www.w3.org/2000/svg">
+            <text x="115" y="24" font-size="13" font-weight="bold" fill="#0f766e">1. 近視眼（成像太前 → 戴凹透鏡）</text>
+            <circle cx="245" cy="105" r="55" fill="#f8fafc" stroke="#475569" stroke-width="2.5"/>
+            <ellipse cx="195" cy="105" rx="7" ry="26" fill="#bae6fd" stroke="#0284c7"/>
+            <path d="M 145 75 Q 153 105, 145 135 L 157 135 Q 149 105, 157 75 Z" fill="#99f6e4" stroke="#0f766e"/>
+            <text x="128" y="155" font-size="11" fill="#0f766e" font-weight="bold">凹透鏡矯正</text>
+            <line x1="65" y1="86" x2="148" y2="86" stroke="#2563eb" stroke-width="2"/>
+            <line x1="65" y1="124" x2="148" y2="124" stroke="#2563eb" stroke-width="2"/>
+            <line x1="152" y1="86" x2="195" y2="82" stroke="#2563eb" stroke-width="2"/>
+            <line x1="152" y1="124" x2="195" y2="128" stroke="#2563eb" stroke-width="2"/>
+            <line x1="195" y1="82" x2="300" y2="105" stroke="#16a34a" stroke-width="2"/>
+            <line x1="195" y1="128" x2="300" y2="105" stroke="#16a34a" stroke-width="2"/>
+            <circle cx="300" cy="105" r="4" fill="#16a34a"/>
+            <text x="242" y="176" font-size="11" fill="#15803d" font-weight="bold">矯正後準確落在視網膜上</text>
+
+            <line x1="380" y1="15" x2="380" y2="180" stroke="#e2e8f0" stroke-width="2"/>
+
+            <text x="485" y="24" font-size="13" font-weight="bold" fill="#0f766e">2. 遠視眼（成像太後 → 戴凸透鏡）</text>
+            <circle cx="625" cy="105" r="55" fill="#f8fafc" stroke="#475569" stroke-width="2.5"/>
+            <ellipse cx="575" cy="105" rx="6" ry="25" fill="#bae6fd" stroke="#0284c7"/>
+            <ellipse cx="528" cy="105" rx="7" ry="30" fill="#bfdbfe" stroke="#2563eb"/>
+            <text x="505" y="155" font-size="11" fill="#1d4ed8" font-weight="bold">凸透鏡矯正</text>
+            <line x1="435" y1="105" x2="528" y2="82" stroke="#2563eb" stroke-width="2"/>
+            <line x1="435" y1="105" x2="528" y2="128" stroke="#2563eb" stroke-width="2"/>
+            <line x1="528" y1="82" x2="575" y2="86" stroke="#2563eb" stroke-width="2"/>
+            <line x1="528" y1="128" x2="575" y2="124" stroke="#2563eb" stroke-width="2"/>
+            <line x1="575" y1="86" x2="680" y2="105" stroke="#16a34a" stroke-width="2"/>
+            <line x1="575" y1="124" x2="680" y2="105" stroke="#16a34a" stroke-width="2"/>
+            <circle cx="680" cy="105" r="4" fill="#16a34a"/>
+            <text x="620" y="176" font-size="11" fill="#15803d" font-weight="bold">矯正後準確落在視網膜上</text>
+          </svg>
+        `
+      }
+    ];
+
+    const questions = [
+      {
+        id: 1,
+        category: "reflection",
+        tag: "反射定律",
+        q: "一道光線斜射向平面鏡，若入射線與反射線之間的夾角為 100°，則入射角為幾度？",
+        options: [
+          "(A) 40°",
+          "(B) 50°",
+          "(C) 80°",
+          "(D) 100°"
+        ],
+        answer: "B",
+        explanation: "根據反射定律，入射角＝反射角。兩者夾角共 100°，所以入射角 = 100° ÷ 2 = 50°。"
+      },
+      {
+        id: 2,
+        category: "reflection",
+        tag: "漫反射觀念",
+        q: "關於「漫反射」的敘述，下列何者正確？",
+        options: [
+          "(A) 發生漫反射時，光線不遵守反射定律",
+          "(B) 只有平滑如鏡子的表面才會發生漫反射",
+          "(C) 漫反射使我們能從不同角度看到不發光的物體",
+          "(D) 平行光經漫反射後，反射光依然保持互相平行"
+        ],
+        answer: "C",
+        explanation: "漫反射發生在粗糙表面（如紙張、黑板），每條光線依然各自遵守反射定律（A、B 錯），只是反射光向四面八方散開（D 錯），讓我們從各角度都能看見物體（C 對）。"
+      },
+      {
+        id: 3,
+        category: "reflection",
+        tag: "平面鏡成像",
+        q: "小華站在平面鏡前 2 公尺處，若他向後退 0.5 公尺，則下列關於鏡中像的敘述何者正確？",
+        options: [
+          "(A) 像與小華的距離變為 5 公尺，像的大小不變",
+          "(B) 像與小華的距離變為 2.5 公尺，像會變小",
+          "(C) 像與鏡面的距離變為 5 公尺，像為倒立虛像",
+          "(D) 像可以投射在放在鏡子後方的白紙上"
+        ],
+        answer: "A",
+        explanation: "後退 0.5 公尺後，小華距離鏡面為 2 + 0.5 = 2.5 公尺，像距離鏡面也是 2.5 公尺，因此人與像相距 2.5 + 2.5 = 5 公尺。平面鏡成正立等大虛像，像的大小不變，且無法投射在紙屏上。"
+      },
+      {
+        id: 4,
+        category: "reflection",
+        tag: "平面鏡左右相反",
+        q: "小明從背後牆上的平面鏡中看到時鐘指針顯示為「3 點 15 分」，則當時實際的時間為何？",
+        options: [
+          "(A) 3 點 15 分",
+          "(B) 8 點 45 分",
+          "(C) 9 點 15 分",
+          "(D) 9 點 45 分"
+        ],
+        answer: "B",
+        explanation: "平面鏡成像左右對稱（與 12 點、6 點連線左右翻轉），鏡中 3 點 15 分對應實際時鐘的「8 點 45 分」（可用 11 點 60 分減去 3 點 15 分速算）。"
+      },
+      {
+        id: 5,
+        category: "reflection",
+        tag: "凹凸面鏡應用",
+        q: "山路急轉彎處常設置一面大鏡子，讓駕駛能提前看到對向來車。這種鏡子主要是利用哪一種面鏡？其成像性質為何？",
+        options: [
+          "(A) 凹面鏡，正立放大虛像",
+          "(B) 凸面鏡，正立縮小虛像",
+          "(C) 凹面鏡，倒立縮小實像",
+          "(D) 平面鏡，正立等大虛像"
+        ],
+        answer: "B",
+        explanation: "路口轉彎處的廣角鏡使用「凸面鏡」，能將光線發散，成像永遠是「正立縮小虛像」，雖然影像縮小，但可觀察到的視野範圍更廣。"
+      },
+      {
+        id: 6,
+        category: "refraction",
+        tag: "光的折射偏折",
+        q: "已知光在空氣、水、玻璃中的速率大小為：空氣 ＞ 水 ＞ 玻璃。若一道光線以相同的入射角分別從空氣斜射入水與玻璃中，則在哪一種介質中的「折射角」較小？",
+        options: [
+          "(A) 水中較小，因為水對光的偏折較大",
+          "(B) 玻璃中較小，因為光在玻璃中速率較慢、更偏向法線",
+          "(C) 兩者折射角相同，因為入射角相同",
+          "(D) 玻璃中較大，因為光在玻璃中會偏離法線"
+        ],
+        answer: "B",
+        explanation: "光由快介質進入慢介質會偏向法線，且速率差距越大、偏折越多。光在玻璃中最慢，因此最偏向法線，折射角最小。"
+      },
+      {
+        id: 7,
+        category: "refraction",
+        tag: "水中與岸上視覺",
+        q: "潛水夫在水底往上看岸上飛過的海鷗時，海鷗看起來的位置與實際位置相比如何？原因為何？",
+        options: [
+          "(A) 看起來較高，因為光從空氣進入水時偏向法線",
+          "(B) 看起來較低，因為光從空氣進入水時偏離法線",
+          "(C) 看起來較高，因為光在水中沿直線傳播",
+          "(D) 位置不變，因為光線垂直射入水面"
+        ],
+        answer: "A",
+        explanation: "海鷗反射的光線從空氣（快）斜射入水（慢）時會「偏向法線」，水中的眼睛沿著折射光線反向延伸看去，會覺得海鷗在比實際更高的位置（虛像）。"
+      },
+      {
+        id: 8,
+        category: "refraction",
+        tag: "光的色散",
+        q: "一束白光通過三稜鏡後分散成七種色光，關於紅光與紫光在三稜鏡中的比較，下列何者正確？",
+        options: [
+          "(A) 紅光在玻璃中的速率較慢，偏折角度較大",
+          "(B) 紫光在玻璃中的速率較快，偏折角度較小",
+          "(C) 紅光在玻璃中的速率較快，偏折角度較小",
+          "(D) 紅光與紫光在玻璃中的速率相同"
+        ],
+        answer: "C",
+        explanation: "在玻璃中，紅光傳播速率最快，因此偏折角度最小（位在光譜最上方）；紫光傳播速率最慢，偏折角度最大（位在最下方）。"
+      },
+      {
+        id: 9,
+        category: "refraction",
+        tag: "色光混合",
+        q: "將紅、綠、藍三種顏色的光束同時投射在白色螢幕的同一處，螢幕上重疊區域會呈現什麼顏色？",
+        options: [
+          "(A) 黑色",
+          "(B) 黃色",
+          "(C) 白色",
+          "(D) 紫色"
+        ],
+        answer: "C",
+        explanation: "紅（R）、綠（G）、藍（B）為光的三原色，三者等比例混合會產生「白光」。"
+      },
+      {
+        id: 10,
+        category: "lens",
+        tag: "凸透鏡成像位置",
+        q: "某凸透鏡的焦距為 15 cm，若將一根點燃的蠟燭放在距離透鏡 40 cm 處，則在透鏡另一側移動紙屏，可接收到什麼樣的像？",
+        options: [
+          "(A) 倒立放大實像",
+          "(B) 倒立縮小實像",
+          "(C) 正立放大虛像",
+          "(D) 倒立等大實像"
+        ],
+        answer: "B",
+        explanation: "焦距 f = 15 cm，兩倍焦距 2f = 30 cm。蠟燭放在 40 cm 處（物距 ＞ 2f），會在透鏡另一側 f 與 2f 之間形成「倒立縮小實像」。"
+      },
+      {
+        id: 11,
+        category: "lens",
+        tag: "凸透鏡動態變化",
+        q: "承上題（凸透鏡焦距 15 cm），若將蠟燭從 40 cm 處慢慢移向 20 cm 處（仍在焦點外），紙屏上的像會如何變化？",
+        options: [
+          "(A) 像越來越小，且越來越靠近透鏡",
+          "(B) 像越來越大，且越來越遠離透鏡",
+          "(C) 像越來越大，且越來越靠近透鏡",
+          "(D) 像的大小不變，只改變明暗"
+        ],
+        answer: "B",
+        explanation: "在凸透鏡焦點（15 cm）以外，符合「物近像遠像變大」：蠟燭越靠近焦點，實像會往遠處移動且越來越放大。"
+      },
+      {
+        id: 12,
+        category: "lens",
+        tag: "放大鏡原理",
+        q: "爺爺拿著凸透鏡看報紙上的小字，發現字變得「正立且放大」。此時報紙與凸透鏡的距離（物距）應在什麼範圍？",
+        options: [
+          "(A) 大於兩倍焦距",
+          "(B) 介於一倍焦距與兩倍焦距之間",
+          "(C) 剛好等於一倍焦距",
+          "(D) 小於一倍焦距"
+        ],
+        answer: "D",
+        explanation: "凸透鏡當放大鏡使用時，物體必須放在「一倍焦距以內（物距 ＜ f）」，才能在同側看到正立放大的虛像。"
+      },
+      {
+        id: 13,
+        category: "lens",
+        tag: "凹透鏡成像",
+        q: "小美透過一個透鏡觀察前方的鉛筆，無論透鏡離鉛筆遠或近，看到的鉛筆永遠都是「正立且縮小」的。請問小美拿的是哪一種透鏡？",
+        options: [
+          "(A) 凸透鏡",
+          "(B) 凹透鏡",
+          "(C) 平面鏡",
+          "(D) 凹面鏡"
+        ],
+        answer: "B",
+        explanation: "只有「凹透鏡」在任何距離下，成像永遠是「正立縮小虛像」。"
+      },
+      {
+        id: 14,
+        category: "lens",
+        tag: "透鏡遮住一半",
+        q: "做凸透鏡成像實驗時，若用紙板把凸透鏡的「下半部」完全遮住，紙屏上的燭火成像會發生什麼變化？",
+        options: [
+          "(A) 燭火的像只剩下一半（上半部或下半部消失）",
+          "(B) 燭火的像完全消失",
+          "(C) 燭火的像依然完整，但亮度變暗",
+          "(D) 燭火的像由倒立變成正立"
+        ],
+        answer: "C",
+        explanation: "物體每一點發出的光線都會射向整片透鏡，遮住一半透鏡只是讓通過的光線總量減少一半，因此成像依然完整，只是亮度變暗。"
+      },
+      {
+        id: 15,
+        category: "lens",
+        tag: "近視與遠視矯正",
+        q: "阿哲看遠處黑板上的字時覺得模糊不清，眼科醫生檢查後發現光線進入他眼睛後，成像落在「視網膜前方」。阿哲患有什麼視力問題？應該配戴哪種鏡片矯正？",
+        options: [
+          "(A) 近視眼，配戴凹透鏡",
+          "(B) 近視眼，配戴凸透鏡",
+          "(C) 遠視眼，配戴凹透鏡",
+          "(D) 遠視眼，配戴凸透鏡"
+        ],
+        answer: "A",
+        explanation: "成像落在視網膜前方是「近視眼」，需要配戴「凹透鏡」先將光線稍微發散，使成像往後推回視網膜上。"
+      }
+    ];
+
+    const state = {
+      mode: "knowledge",
+      kFilter: "all",
+      openK: { K1: true },
+      qFilter: "all",
+      selectedQ: {},
+      openQ: {}
+    };
+
+    const tabKnowledge = document.getElementById("tabKnowledge");
+    const tabQuiz = document.getElementById("tabQuiz");
+    const knowledgeSection = document.getElementById("knowledgeSection");
+    const quizSection = document.getElementById("quizSection");
+
+    const knowledgeListEl = document.getElementById("knowledgeList");
+    const quizListEl = document.getElementById("quizList");
+    const statsTextEl = document.getElementById("statsText");
+
+    function switchMode(mode) {
+      state.mode = mode;
+      if (mode === "knowledge") {
+        tabKnowledge.classList.add("active");
+        tabQuiz.classList.remove("active");
+        knowledgeSection.classList.remove("hidden");
+        quizSection.classList.add("hidden");
+        renderKnowledge();
+      } else {
+        tabQuiz.classList.add("active");
+        tabKnowledge.classList.remove("active");
+        quizSection.classList.remove("hidden");
+        knowledgeSection.classList.add("hidden");
+        renderQuiz();
+      }
+    }
+
+    function renderKnowledge() {
+      const visible = knowledgeCards.filter(k => state.kFilter === "all" || k.category === state.kFilter);
+      knowledgeListEl.innerHTML = visible.map(k => {
+        const isOpen = !!state.openK[k.id];
+        return `
+          <article class="card">
+            <div class="card-top">
+              <span class="k-num">${k.id} 知識點</span>
+              <span class="badge teal">${k.tag}</span>
+            </div>
+            <h2 class="question">${k.title}</h2>
+            <p class="summary-hint">${k.hint}</p>
+            <div class="card-actions">
+              <button class="reveal-btn teal" data-ktoggle="${k.id}">
+                ${isOpen ? "收合重點與圖表" : "點開看重點與圖表"}
+              </button>
+            </div>
+            <div class="drawer teal ${isOpen ? "open" : ""}">
+              <ul>${k.points.map(pt => `<li>${pt}</li>`).join("")}</ul>
+              <div class="callout">${k.callout}</div>
+              <div class="chart-box">
+                <div class="chart-title">${k.chartTitle}</div>
+                ${k.svg}
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function updateQuizStats() {
+      const answeredIds = Object.keys(state.selectedQ);
+      const correctCount = answeredIds.filter(
+        id => state.selectedQ[id] === questions.find(q => q.id === Number(id)).answer
+      ).length;
+      statsTextEl.textContent = `已作答：${answeredIds.length} / ${questions.length}｜答對：${correctCount}`;
+    }
+
+    function renderQuiz() {
+      const visible = questions.filter(q => state.qFilter === "all" || q.category === state.qFilter);
+      quizListEl.innerHTML = visible.map(q => {
+        const picked = state.selectedQ[q.id];
+        const isOpen = !!state.openQ[q.id];
+
+        let feedbackHtml = "";
+        if (picked) {
+          if (picked === q.answer) {
+            feedbackHtml = `<span class="feedback ok">答對了！觀念超穩 🎉</span>`;
+          } else {
+            feedbackHtml = `<span class="feedback no">再想想看，正確答案是 (${q.answer})</span>`;
+          }
+        }
+
+        const optionsHtml = q.options.map(opt => {
+          const letter = opt.trim().charAt(1);
+          let cls = "option-btn";
+          if (picked) {
+            if (letter === q.answer) cls += " correct";
+            else if (letter === picked) cls += " wrong";
+          }
+          return `<button class="${cls}" data-qid="${q.id}" data-choice="${letter}">${opt}</button>`;
+        }).join("");
+
+        return `
+          <article class="card">
+            <div class="card-top">
+              <span class="q-num">第 ${q.id} 題</span>
+              <span class="badge">${q.tag}</span>
+            </div>
+            <p class="question">${q.q}</p>
+            <div class="options">${optionsHtml}</div>
+            <div class="card-actions">
+              <div>${feedbackHtml}</div>
+              <button class="reveal-btn" data-qtoggle="${q.id}">
+                ${isOpen ? "隱藏答案與詳解" : "看答案與詳解"}
+              </button>
+            </div>
+            <div class="drawer ${isOpen ? "open" : ""}">
+              <div class="ans-line">正確答案：(${q.answer})</div>
+              <div><strong>詳解：</strong>${q.explanation}</div>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      updateQuizStats();
+    }
+
+    tabKnowledge.addEventListener("click", () => switchMode("knowledge"));
+    tabQuiz.addEventListener("click", () => switchMode("quiz"));
+
+    knowledgeListEl.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-ktoggle]");
+      if (!btn) return;
+      const kid = btn.dataset.ktoggle;
+      state.openK[kid] = !state.openK[kid];
+      renderKnowledge();
+    });
+
+    document.querySelectorAll("[data-kfilter]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("[data-kfilter]").forEach(b => b.classList.remove("active", "teal-filter"));
+        btn.classList.add("active", "teal-filter");
+        state.kFilter = btn.dataset.kfilter;
+        renderKnowledge();
+      });
+    });
+
+    document.getElementById("toggleAllKnowledgeBtn").addEventListener("click", () => {
+      knowledgeCards.forEach(k => { state.openK[k.id] = true; });
+      renderKnowledge();
+    });
+
+    document.getElementById("collapseAllKnowledgeBtn").addEventListener("click", () => {
+      state.openK = {};
+      renderKnowledge();
+    });
+
+    quizListEl.addEventListener("click", (e) => {
+      const optBtn = e.target.closest(".option-btn");
+      if (optBtn) {
+        const qid = Number(optBtn.dataset.qid);
+        state.selectedQ[qid] = optBtn.dataset.choice;
+        state.openQ[qid] = true;
+        renderQuiz();
+        return;
+      }
+
+      const revBtn = e.target.closest("[data-qtoggle]");
+      if (revBtn) {
+        const qid = Number(revBtn.dataset.qtoggle);
+        state.openQ[qid] = !state.openQ[qid];
+        renderQuiz();
+      }
+    });
+
+    document.querySelectorAll("[data-qfilter]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("[data-qfilter]").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        state.qFilter = btn.dataset.qfilter;
+        renderQuiz();
+      });
+    });
+
+    document.getElementById("toggleAllQuizBtn").addEventListener("click", () => {
+      const anyClosed = questions.some(q => !state.openQ[q.id]);
+      questions.forEach(q => { state.openQ[q.id] = anyClosed; });
+      document.getElementById("toggleAllQuizBtn").textContent = anyClosed ? "全部收合詳解" : "全部展開詳解";
+      renderQuiz();
+    });
+
+    document.getElementById("resetQuizBtn").addEventListener("click", () => {
+      state.selectedQ = {};
+      state.openQ = {};
+      document.getElementById("toggleAllQuizBtn").textContent = "全部展開詳解";
+      renderQuiz();
+    });
+
+    renderKnowledge();
+  </script>
+</body>
+</html>

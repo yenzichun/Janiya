@@ -38,6 +38,33 @@
       max-width: 860px;
       margin: 0 auto;
     }
+
+    .top-nav {
+      margin-bottom: 14px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+      transition: all 0.15s ease;
+    }
+
+    .back-link:hover {
+      background: var(--primary-soft);
+      border-color: #93c5fd;
+      color: var(--primary);
+    }
+
     header {
       background: linear-gradient(135deg, #1d4ed8, #0284c7 60%, #0d9488);
       color: #fff;
@@ -363,6 +390,11 @@
 </head>
 <body>
   <div class="container">
+
+    <nav class="top-nav">
+      <a class="back-link" href="./index.html">← 回到學習單元目錄</a>
+    </nav>
+
     <header>
       <h1>國二理化｜波動與光</h1>
     </header>
